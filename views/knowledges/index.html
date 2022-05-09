@@ -1,0 +1,13 @@
+{{ define "knowledges/index" }}
+
+<ul>
+  {{ range .knowledges }}
+    <li>
+      <a href="/knowledge/{{ .Slug }}">
+        {{ .Title }}
+      </a>
+    </li>
+  {{ end }}
+</ul>
+
+{{ end }}

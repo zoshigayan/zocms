@@ -10,6 +10,7 @@ func main() {
 	db.Init()
 
 	router := gin.Default()
+	router.LoadHTMLGlob("views/**/*")
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",

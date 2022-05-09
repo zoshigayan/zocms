@@ -1,0 +1,17 @@
+{{ define "knowledges/show" }}
+
+<h1>{{ .Knowledge.Title }}</h1>
+
+<pre>
+<code>
+{{ .Knowledge.BodyMD }}
+</code>
+</pre>
+
+<pre>
+<code>
+{{ .Knowledge.BodyHTML }}
+</code>
+</pre>
+
+{{ end }}

@@ -11,13 +11,25 @@ type KnowledgeController struct {
 
 func (kc KnowledgeController) Init(g *gin.RouterGroup) {
 	g.GET("/", kc.Index)
+	g.GET("/:slug", kc.Show)
 }
 
 func (kc KnowledgeController) Index(c *gin.Context) {
 	db := db.DbManager()
 	knowledges := []models.Knowledge{}
 	db.Find(&knowledges)
-	c.JSON(200, gin.H{
+
+	c.HTML(200, "knowledges/index", gin.H{
 		"knowledges": knowledges,
+	})
+}
+
+func (kc KnowledgeController) Show(c *gin.Context) {
+	db := db.DbManager()
+	knowledge := models.Knowledge{}
+	db.First(&knowledge, "slug = ?", c.Param("slug"))
+
+	c.HTML(200, "knowledges/show", gin.H{
+		"Knowledge": knowledge,
 	})
 }
