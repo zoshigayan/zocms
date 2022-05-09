@@ -1,6 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/zoshigayan/wordpressanai/controllers"
+)
 
 func main() {
 	router := gin.Default()
@@ -9,5 +12,7 @@ func main() {
 			"message": "pong",
 		})
 	})
+	controllers.KnowledgeController{}.Init(router.Group("/knowledge"))
+	controllers.RandomController{}.Init(router.Group("/random"))
 	router.Run()
 }
