@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/zoshigayan/wordpressanai/controllers"
+	"github.com/zoshigayan/zocms/controllers"
 )
 
 func main() {

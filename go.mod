@@ -1,4 +1,4 @@
-module github.com/zoshigayan/wordpressanai
+module github.com/zoshigayan/zocms
 
 go 1.18
 
