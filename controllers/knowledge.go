@@ -55,9 +55,15 @@ func (kc KnowledgeController) Update(c *gin.Context) {
 }
 
 func (kc KnowledgeController) New(c *gin.Context) {
+	c.HTML(200, "knowledges/edit", gin.H{})
 }
 
 func (kc KnowledgeController) Create(c *gin.Context) {
+	submitted := knowledgeByParams(c)
+
+	db := db.DbManager()
+	db.Create(&submitted)
+	c.Redirect(302, fmt.Sprintf("/knowledge/%s", submitted.Slug))
 }
 
 func (kc KnowledgeController) Destroy(c *gin.Context) {
