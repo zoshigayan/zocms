@@ -1,0 +1,65 @@
+{{ define "knowledges/edit" }}
+
+<main>
+  {{ if .Knowledge }}
+  <h1>投稿を編集</h1>
+  {{ else }}
+  <h1>投稿を追加</h1>
+  {{ end }}
+
+{{ if .Knowledge }}
+<form action="/knowledge/{{ .Knowledge.Slug }}" method="POST">
+{{ else }}
+<form action="/knowledge/new" method="POST">
+{{ end }}
+  <label>
+    <span>スラッグ</span>
+    <input type="text" value="{{ .Knowledge.Slug }}" name="Slug">
+  </label>
+
+  <label>
+    <span>タイトル</span>
+    <input type="text" value="{{ .Knowledge.Title }}" name="Title">
+  </label>
+
+  <label>
+    <span>本文</span>
+    <textarea name="BodyMD">
+      {{ .Knowledge.BodyMD }}
+    </textarea>
+  </label>
+
+  <input type="hidden" value="{{ .Knowledge.BodyHTML }}" name="BodyHTML">
+
+  <label>
+    <span>公開日</span>
+    <input type="date" value="{{ .Knowledge.PublishedAt }}" name="PublishedAt">
+  </label>
+
+  <label>
+    <span>下書き</span>
+    <input type="checkbox" checked="{{ .Knowledge.Draft }}" name="Draft">
+  </label>
+
+  <button type="submit">保存</button>
+</form>
+</main>
+
+<style>
+main {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  width: 100%;
+}
+
+label > span {
+  display: block;
+}
+</style>
+
+{{ end }}
