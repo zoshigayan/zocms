@@ -3,7 +3,6 @@ package controllers
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/zoshigayan/zocms/db"
 	"github.com/zoshigayan/zocms/models"
 	"time"
 )
@@ -24,9 +23,7 @@ func (kc KnowledgeController) Init(g *gin.RouterGroup) {
 }
 
 func (kc KnowledgeController) Index(c *gin.Context) {
-	db := db.DbManager()
-	knowledges := []models.Knowledge{}
-	db.Find(&knowledges)
+	knowledges := models.KnowledgeAll()
 
 	c.HTML(200, "knowledges/index", gin.H{
 		"knowledges": knowledges,
@@ -34,9 +31,7 @@ func (kc KnowledgeController) Index(c *gin.Context) {
 }
 
 func (kc KnowledgeController) Show(c *gin.Context) {
-	db := db.DbManager()
-	knowledge := models.Knowledge{}
-	db.First(&knowledge, "slug = ?", c.Param("slug"))
+	knowledge := models.KnowledgeFind(c.Param("slug"))
 
 	c.HTML(200, "knowledges/edit", gin.H{
 		"Knowledge": knowledge,
@@ -45,11 +40,7 @@ func (kc KnowledgeController) Show(c *gin.Context) {
 
 func (kc KnowledgeController) Update(c *gin.Context) {
 	submitted := knowledgeByParams(c)
-
-	db := db.DbManager()
-	knowledge := models.Knowledge{}
-	db.First(&knowledge, "slug = ?", c.Param("slug"))
-	db.Model(&knowledge).Updates(submitted)
+	models.KnowledgeUpdate(c.Param("slug"), submitted)
 
 	c.Redirect(302, fmt.Sprintf("/knowledge/%s", submitted.Slug))
 }
@@ -60,9 +51,8 @@ func (kc KnowledgeController) New(c *gin.Context) {
 
 func (kc KnowledgeController) Create(c *gin.Context) {
 	submitted := knowledgeByParams(c)
+	models.KnowledgeCreate(submitted)
 
-	db := db.DbManager()
-	db.Create(&submitted)
 	c.Redirect(302, fmt.Sprintf("/knowledge/%s", submitted.Slug))
 }
 

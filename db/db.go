@@ -1,7 +1,6 @@
 package db
 
 import (
-	"github.com/zoshigayan/zocms/models"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"log"
@@ -16,8 +15,6 @@ func Init() {
 		panic("DB connection failed.")
 	}
 
-	db.AutoMigrate(&models.Knowledge{})
-	// db.AutoMigrate(&models.Random{})
 	log.Println("DB connection succeessed.")
 }
 
