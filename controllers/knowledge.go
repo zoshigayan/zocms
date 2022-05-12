@@ -26,7 +26,7 @@ func (kc KnowledgeController) Index(c *gin.Context) {
 	knowledges := models.KnowledgeAll()
 
 	c.HTML(200, "knowledge/index", gin.H{
-		"knowledges": knowledges,
+		"Knowledges": knowledges,
 	})
 }
 
