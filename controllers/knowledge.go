@@ -25,7 +25,7 @@ func (kc KnowledgeController) Init(g *gin.RouterGroup) {
 func (kc KnowledgeController) Index(c *gin.Context) {
 	knowledges := models.KnowledgeAll()
 
-	c.HTML(200, "knowledges/index", gin.H{
+	c.HTML(200, "knowledge/index", gin.H{
 		"knowledges": knowledges,
 	})
 }
@@ -33,7 +33,7 @@ func (kc KnowledgeController) Index(c *gin.Context) {
 func (kc KnowledgeController) Show(c *gin.Context) {
 	knowledge := models.KnowledgeFind(c.Param("slug"))
 
-	c.HTML(200, "knowledges/edit", gin.H{
+	c.HTML(200, "knowledge/edit", gin.H{
 		"Knowledge": knowledge,
 	})
 }
@@ -46,7 +46,7 @@ func (kc KnowledgeController) Update(c *gin.Context) {
 }
 
 func (kc KnowledgeController) New(c *gin.Context) {
-	c.HTML(200, "knowledges/edit", gin.H{})
+	c.HTML(200, "knowledge/edit", gin.H{})
 }
 
 func (kc KnowledgeController) Create(c *gin.Context) {
