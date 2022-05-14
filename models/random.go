@@ -2,43 +2,32 @@ package models
 
 import (
 	"github.com/zoshigayan/zocms/db"
-	"time"
 )
 
-type Random struct {
-	ID          uint `gorm:"PrimaryKey;autoIncrement"`
-	Title       string
-	BodyMD      string
-	BodyHTML    string
-	Draft       bool `gorm:"default:true"`
-	PublishedAt time.Time
-	CreatedAt   time.Time `gorm:"autoCreateTime"`
-	UpdatedAt   time.Time `gorm:"autoUpdateTime"`
-}
-
-func RandomAll() []Random {
+func RandomAll() []Entry {
 	cursor := db.DbManager()
-	randoms := []Random{}
-	cursor.Find(&randoms)
+	randoms := []Entry{}
+	cursor.Where("type = 'random'").Find(&randoms)
 	return randoms
 }
 
-func RandomFind(id uint) Random {
+func RandomFind(id uint) Entry {
 	cursor := db.DbManager()
-	random := Random{}
+	random := Entry{}
 	cursor.First(&random, id)
 	return random
 }
 
-func RandomUpdate(id uint, value Random) Random {
+func RandomUpdate(id uint, value Entry) Entry {
 	cursor := db.DbManager()
 	random := RandomFind(id)
 	cursor.Model(&random).Updates(value)
 	return random
 }
 
-func RandomCreate(value Random) Random {
+func RandomCreate(value Entry) Entry {
 	cursor := db.DbManager()
+	value.Type = "random"
 	cursor.Create(&value)
 	return value
 }

@@ -7,6 +7,5 @@ import (
 
 func Migrate() {
 	db := db.DbManager()
-	db.AutoMigrate(&models.Knowledge{})
-	db.AutoMigrate(&models.Random{})
+	db.AutoMigrate(&models.Entry{})
 }

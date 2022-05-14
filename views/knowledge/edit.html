@@ -8,7 +8,7 @@
   {{ end }}
 
 {{ if .Knowledge }}
-<form action="/knowledge/{{ .Knowledge.Slug }}" method="POST">
+<form action="/knowledge/{{ .Knowledge.ID }}" method="POST">
 {{ else }}
 <form action="/knowledge/new" method="POST">
 {{ end }}
@@ -24,9 +24,7 @@
 
   <label>
     <span>本文</span>
-    <textarea name="BodyMD">
-      {{ .Knowledge.BodyMD }}
-    </textarea>
+    <textarea name="BodyMD">{{ .Knowledge.BodyMD }}</textarea>
   </label>
 
   <input type="hidden" value="{{ .Knowledge.BodyHTML }}" name="BodyHTML">

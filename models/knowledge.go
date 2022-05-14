@@ -2,41 +2,30 @@ package models
 
 import (
 	"github.com/zoshigayan/zocms/db"
-	"time"
 )
 
-type Knowledge struct {
-	Slug        string `gorm:"PrimaryKey"`
-	Title       string
-	BodyMD      string
-	BodyHTML    string
-	Draft       bool `gorm:"default:true"`
-	PublishedAt time.Time
-	CreatedAt   time.Time `gorm:"autoCreateTime"`
-	UpdatedAt   time.Time `gorm:"autoUpdateTime"`
-}
-
-func KnowledgeAll() []Knowledge {
+func KnowledgeAll() []Entry {
 	cursor := db.DbManager()
-	knowledges := []Knowledge{}
-	cursor.Find(&knowledges)
+	knowledges := []Entry{}
+	cursor.Where("type = 'knowledge'").Find(&knowledges)
 	return knowledges
 }
 
-func KnowledgeFind(slug string) Knowledge {
+func KnowledgeFind(id uint) Entry {
 	cursor := db.DbManager()
-	knowledge := Knowledge{}
-	cursor.First(&knowledge, "slug = ?", slug)
+	knowledge := Entry{}
+	cursor.First(&knowledge, id)
 	return knowledge
 }
 
-func KnowledgeUpdate(slug string, value Knowledge) {
+func KnowledgeUpdate(id uint, value Entry) {
 	cursor := db.DbManager()
-	knowledge := KnowledgeFind(slug)
+	knowledge := KnowledgeFind(id)
 	cursor.Model(&knowledge).Updates(value)
 }
 
-func KnowledgeCreate(value Knowledge) {
+func KnowledgeCreate(value Entry) {
 	cursor := db.DbManager()
+	value.Type = "knowledge"
 	cursor.Create(&value)
 }

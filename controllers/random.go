@@ -73,14 +73,14 @@ func (rc RandomController) Create(c *gin.Context) {
 func (rc RandomController) Destroy(c *gin.Context) {
 }
 
-func randomByParams(c *gin.Context) models.Random {
+func randomByParams(c *gin.Context) models.Entry {
 	Title := c.PostForm("Title")
 	BodyMD := c.PostForm("BodyMD")
 	BodyHTML := c.PostForm("BodyHTML")
 	PublishedAt, _ := time.Parse("2006-01-02", c.PostForm("PublishedAt"))
 	Draft := c.PostForm("Draft") == "on"
 
-	return models.Random{
+	return models.Entry{
 		Title:       Title,
 		BodyMD:      BodyMD,
 		BodyHTML:    BodyHTML,
