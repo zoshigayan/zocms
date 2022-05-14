@@ -1,4 +1,4 @@
-{{ define "random/edit" }}
+{{ define "admin/random/edit" }}
 
 <main>
   {{ if .Random }}
@@ -8,9 +8,9 @@
   {{ end }}
 
 {{ if .Random }}
-<form action="/random/{{ .Random.ID }}" method="POST">
+<form action="/admin/random/{{ .Random.ID }}" method="POST">
 {{ else }}
-<form action="/random/new" method="POST">
+<form action="/admin/random/new" method="POST">
 {{ end }}
   <label>
     <span>タイトル</span>

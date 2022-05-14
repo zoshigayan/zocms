@@ -1,4 +1,4 @@
-{{ define "knowledge/edit" }}
+{{ define "admin/knowledge/edit" }}
 
 <main>
   {{ if .Knowledge }}
@@ -8,9 +8,9 @@
   {{ end }}
 
 {{ if .Knowledge }}
-<form action="/knowledge/{{ .Knowledge.ID }}" method="POST">
+<form action="/admin/knowledge/{{ .Knowledge.ID }}" method="POST">
 {{ else }}
-<form action="/knowledge/new" method="POST">
+<form action="/admin/knowledge/new" method="POST">
 {{ end }}
   <label>
     <span>スラッグ</span>

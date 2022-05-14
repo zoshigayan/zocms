@@ -1,0 +1,14 @@
+{{ define "admin/random/index" }}
+
+<a href="/admin/random/new">作成</a>
+<ul>
+  {{ range .Randoms }}
+    <li>
+      <a href="/admin/random/{{ .ID }}">
+        {{ .Title }}
+      </a>
+    </li>
+  {{ end }}
+</ul>
+
+{{ end }}

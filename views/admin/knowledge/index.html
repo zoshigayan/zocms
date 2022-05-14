@@ -1,0 +1,14 @@
+{{ define "admin/knowledge/index" }}
+
+<a href="/admin/knowledge/new">作成</a>
+<ul>
+  {{ range .Knowledges }}
+    <li>
+      <a href="/admin/knowledge/{{ .ID }}">
+        {{ .Title }}
+      </a>
+    </li>
+  {{ end }}
+</ul>
+
+{{ end }}
