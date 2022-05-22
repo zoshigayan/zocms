@@ -1,0 +1,48 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: #000;
+    --c-base: #ccc;
+    --c-primary: #f00;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --c-bg: #ccc;
+    --c-base: #000;
+    --c-primary: #f00;
+  }
+}
+
+html {
+  background-color: var(--c-bg);
+  color: var(--c-base);
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.main {
+  flex: 1;
+}
+
+.navigation ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.navigation li:not(:first-of-type) {
+  margin-left: 2rem;
+}
+
+.navigation a {
+  color: var(--c-base);
+}
