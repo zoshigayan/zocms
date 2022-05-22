@@ -1,0 +1,74 @@
+{{ define "site/index" }}
+<!DOCTYPE HTML>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>雑記ヶ谷</title>
+    <link rel="stylesheet" href="/assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+  <div class="container">
+    <header class="header">
+      <h1>雑記ヶ谷</h1>
+      <nav class="navigation">
+        <ul>
+          <li>
+            <a href="/">トップ</a>
+          </li>
+          <li>
+            <a href="/knowledge">知見</a>
+          </li>
+          <li>
+            <a href="/random">雑記</a>
+          </li>
+          <li>
+            <a href="/quote">引用</a>
+          </li>
+          <li>
+            <a href="/rss">RSS</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main">
+      <ul>
+        {{ range .Entries }}
+          <li>
+            {{ if eq .Type "knowledge" }}
+            <article>
+              <h1>
+                <a href="/entries/{{ .ID }}">
+                {{ .Title }}
+                </a>
+              </h1>
+            </article>
+            {{ else if eq .Type "random" }}
+            <article>
+              <h1>
+                <a href="/entries/{{ .ID }}">
+                {{ .Title }}
+                </a>
+              </h1>
+            </article>
+            {{ else if eq .Type "quote" }}
+            <article>
+              <h1>
+                <a href="/entries/{{ .ID }}">
+                {{ .Title }}
+                </a>
+              </h1>
+            </article>
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    </main>
+    <footer>
+      zoshigayan
+      twitter github mail
+    </footer>
+  </container>
+  </body>
+</html>
+{{ end }}
